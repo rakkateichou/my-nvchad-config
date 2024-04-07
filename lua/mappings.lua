@@ -19,6 +19,7 @@ map("n", "<C-k>", "<C-w>k", { desc = "Switch Window up" })
 
 map("n", ismac and "<D-s>" or "<C-s>", "<cmd>w<CR>", { desc = "File Save" })
 map("n", ismac and "<D-c>" or"<C-c>", "<cmd>%y+<CR>", { desc = "File Copy whole" })
+if ismac then map("i", "<D-v>", "<ESC>pa", { desc = "Paste From Clipboard" }) end
 
 map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "Toggle Line number" })
 map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle Relative number" })
