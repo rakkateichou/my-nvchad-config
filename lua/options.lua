@@ -24,3 +24,13 @@ local function open_nvim_tree(data)
 end
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+vim.cmd[[ "aunmenu PopUp.How-to\ disable\ mouse" ]]
+vim.cmd[[ "aunmenu PopUp.-1-" ]]
+
+local _, nvimtree = pcall(require, "nvim-tree")
+
+nvimtree.setup({
+  git = {
+    ignore = false,
+  },
+})

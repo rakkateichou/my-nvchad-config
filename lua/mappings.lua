@@ -18,6 +18,7 @@ map("n", "<C-j>", "<C-w>j", { desc = "Switch Window down" })
 map("n", "<C-k>", "<C-w>k", { desc = "Switch Window up" })
 
 map("n", ismac and "<D-s>" or "<C-s>", "<cmd>w<CR>", { desc = "File Save" })
+map("i", ismac and "<D-s>" or "<C-s>", "<ESC><cmd>w<CR>i", { desc = "File Save" })
 map("n", ismac and "<D-c>" or"<C-c>", "<cmd>%y+<CR>", { desc = "File Copy whole" })
 if ismac then map("i", "<D-v>", "<ESC>pa", { desc = "Paste From Clipboard" }) end
 
@@ -89,24 +90,24 @@ map(
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
 
 -- new terminals
-map("n", "<leader>h", function()
+map("n", ismac and "˙" or "<A-h>", function()
   require("nvchad.term").new { pos = "sp", size = 0.3 }
 end, { desc = "Terminal New horizontal term" })
 
-map("n", "<leader>v", function()
+map("n", ismac and "√" or "<A-v>", function()
   require("nvchad.term").new { pos = "vsp", size = 0.3 }
 end, { desc = "Terminal New vertical window" })
 
 -- toggleable
-map({ "n", "t" }, ismac and "√" or "<A-v>", function()
+map({ "n", "t" }, "<leader>v", function()
   require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm", size = 0.3 }
 end, { desc = "Terminal Toggleable vertical term" })
 
-map({ "n", "t" }, ismac and "˙" or "<A-h>", function()
+map({ "n", "t" }, "<leader>h", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm", size = 0.3 }
 end, { desc = "Terminal New horizontal term" })
 
-map({ "n", "t" }, ismac and "ƒ" or "<A-f>", function()
+map({ "n", "t" }, "<leader>i", function()
   require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
 end, { desc = "Terminal Toggle Floating term" })
 
