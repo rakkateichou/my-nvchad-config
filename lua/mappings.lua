@@ -138,6 +138,7 @@ map("n", "<leader>cc", function()
   end
 end, { desc = "Blankline Jump to current context" })
 
+if ismac then map("i", "ø", "<ESC>o", { desc = "New Line in Insert mode"} ) end
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
