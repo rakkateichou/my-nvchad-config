@@ -20,7 +20,23 @@ map("n", "<C-k>", "<C-w>k", { desc = "Switch Window up" })
 map("n", ismac and "<D-s>" or "<C-s>", "<cmd>w<CR>", { desc = "File Save" })
 map("i", ismac and "<D-s>" or "<C-s>", "<ESC><cmd>w<CR>i", { desc = "File Save" })
 map("n", ismac and "<D-c>" or"<C-c>", "<cmd>%y+<CR>", { desc = "File Copy whole" })
-if ismac then map("i", "<D-v>", "<ESC>pa", { desc = "Paste From Clipboard" }) end
+
+if vim.g.neovide then
+  vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
+  vim.keymap.set('v', '<D-c>', '"+y') -- Copy
+  vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
+  vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
+  vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
+  vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+end
+
+-- Allow clipboard copy paste in neovim
+vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+
+
 
 map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "Toggle Line number" })
 map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle Relative number" })
@@ -99,15 +115,15 @@ map("n", ismac and "√" or "<A-v>", function()
 end, { desc = "Terminal New vertical window" })
 
 -- toggleable
-map({ "n", "t" }, "<leader>v", function()
+map("n", "<leader>v", function()
   require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm", size = 0.3 }
 end, { desc = "Terminal Toggleable vertical term" })
 
-map({ "n", "t" }, "<leader>h", function()
+map("n", "<leader>h", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm", size = 0.3 }
 end, { desc = "Terminal New horizontal term" })
 
-map({ "n", "t" }, "<leader>i", function()
+map("n", "<leader>i", function()
   require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
 end, { desc = "Terminal Toggle Floating term" })
 
@@ -143,6 +159,8 @@ if ismac then map("i", "ø", "<ESC>o", { desc = "New Line in Insert mode"} ) end
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
-map("n", ismac and "<D-d>" or "<C-d>", ":GoDoc<cr>")
+map({"n", "i"}, ismac and "<D-e>" or "<C-e>", ":lua vim.diagnostic.open_float()<cr>", { silent = true })
+map({"n", "i"}, ismac and "<D-d>" or "<C-d>", ":GoDoc<cr>")
 
+map({"i", "n"}, "<M-CR>", ":lua vim.lsp.buf.code_action()<CR>", { silent = true })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")

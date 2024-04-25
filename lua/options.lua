@@ -7,6 +7,8 @@ require "nvchad.options"
 
 vim.opt.autochdir = true
 
+vim.g.nvim_tree_respect_buf_cwd = 1
+
 local function open_nvim_tree(data)
 
   -- buffer is a directory
