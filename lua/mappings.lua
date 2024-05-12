@@ -17,9 +17,9 @@ map("n", "<C-l>", "<C-w>l", { desc = "Switch Window right" })
 map("n", "<C-j>", "<C-w>j", { desc = "Switch Window down" })
 map("n", "<C-k>", "<C-w>k", { desc = "Switch Window up" })
 
-map("n", ismac and "<D-s>" or "<C-s>", "<cmd>w<CR>", { desc = "File Save" })
-map("i", ismac and "<D-s>" or "<C-s>", "<ESC><cmd>w<CR>i", { desc = "File Save" })
-map("n", ismac and "<D-c>" or"<C-c>", "<cmd>%y+<CR>", { desc = "File Copy whole" })
+map("n", "<C-s>", "<cmd>w<CR>", { desc = "File Save" })
+map("i", "<C-s>", "<ESC><cmd>w<CR>i", { desc = "File Save" })
+map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "File Copy whole" })
 
 if vim.g.neovide then
   vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
@@ -28,13 +28,13 @@ if vim.g.neovide then
   vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
   vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
   vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
-end
 
--- Allow clipboard copy paste in neovim
-vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+  -- Allow clipboard copy paste in neovim
+  vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
+  vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+  vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+  vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+end
 
 
 map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle Relative number" })
@@ -65,7 +65,7 @@ map("n", "<leader>x", function()
   require("nvchad.tabufline").close_buffer()
 end, { desc = "Buffer Close" })
 
-map("n", "<leader>wc", "<C-w>c<cr>", { desc = "Window Close" })
+map("n", "<leader>wq", "<C-w>c<cr>", { desc = "Quit a window" })
 
 -- Comment
 map("n", "<leader>/", function()
@@ -159,8 +159,19 @@ if ismac then map("i", "ø", "<ESC>o", { desc = "New Line in Insert mode"} ) end
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
-map({"n", "i"}, ismac and "<D-e>" or "<C-e>", ":lua vim.diagnostic.open_float()<cr>", { silent = true })
-map({"n", "i"}, ismac and "<D-d>" or "<C-d>", ":GoDoc<cr>")
+map({"n", "i"}, "<C-e>", ":lua vim.diagnostic.open_float()<cr>", { silent = true })
+map({"n", "i"}, "<C-d>", ":GoDoc<cr>", { silent = true })
 
 map({"i", "n"}, "<M-CR>", ":lua vim.lsp.buf.code_action()<CR>", { silent = true })
+
+-- local bufnr = vim.api.nvim_get_current_buf()
+-- map(
+--   "n",
+--   "<leader>a",
+--   function()
+--     vim.cmd.RustLsp('codeAction') -- supports rust-analyzer's grouping
+--     -- or vim.lsp.buf.codeAction() if you don't want grouping.
+--   end,
+--   { silent = true, buffer = bufnr }
+-- )
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")

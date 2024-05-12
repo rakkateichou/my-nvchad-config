@@ -15,6 +15,8 @@ return {
     end,
   },
 
+  {'nvim-telescope/telescope-ui-select.nvim' },
+
   {
     "ray-x/go.nvim",
     dependencies = {  -- optional packages
@@ -31,6 +33,12 @@ return {
   },
 
   {
+    'mrcjkb/rustaceanvim',
+    version = '^4', -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },
+
+  {
   	"williamboman/mason.nvim",
   	opts = {
   		ensure_installed = {
@@ -40,13 +48,23 @@ return {
   	},
   },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  {
+  	"nvim-treesitter/nvim-treesitter",
+  	opts = {
+  		ensure_installed = {
+  		  "lua",
+        "vimdoc",
+
+        "go",
+
+        "c",
+        "rust",
+
+        "html",
+        "css",
+        "javascript",
+        "typescript"
+  		},
+  	},
+  },
 }
