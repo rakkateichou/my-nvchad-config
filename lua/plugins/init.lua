@@ -1,5 +1,25 @@
 return {
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "lua",
+        "vimdoc",
+
+        "go",
+
+        "c",
+        "rust",
+
+        "html",
+        "css",
+        "javascript",
+        "typescript"
+      },
+    },
+  },
+
+  {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
     config = function()
@@ -39,32 +59,12 @@ return {
   },
 
   {
-  	"williamboman/mason.nvim",
-  	opts = {
-  		ensure_installed = {
-  			"lua-language-server", "stylua",
-  			"gopls"
-  		},
-  	},
-  },
-
-  {
-  	"nvim-treesitter/nvim-treesitter",
-  	opts = {
-  		ensure_installed = {
-  		  "lua",
-        "vimdoc",
-
-        "go",
-
-        "c",
-        "rust",
-
-        "html",
-        "css",
-        "javascript",
-        "typescript"
-  		},
-  	},
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "lua-language-server", "stylua",
+        "gopls"
+      },
+    },
   },
 }
