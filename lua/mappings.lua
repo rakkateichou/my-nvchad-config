@@ -132,6 +132,11 @@ map("t", "<ESC>", function()
   vim.api.nvim_win_close(win, true)
 end, { desc = "Terminal Close term in terminal mode" })
 
+map("t", "jk", function()
+  local win = vim.api.nvim_get_current_win()
+  vim.api.nvim_win_close(win, true)
+end, { desc = "Terminal Close term in terminal mode" })
+
 -- whichkey
 map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "Whichkey all keymaps" })
 
