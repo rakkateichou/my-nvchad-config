@@ -7,6 +7,7 @@ return {
         "vimdoc",
 
         "go",
+        "python",
 
         "c",
         "rust",
@@ -15,6 +16,18 @@ return {
         "css",
         "javascript",
         "typescript"
+      },
+    },
+  },
+
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "lua-language-server",
+        "stylua",
+        "gopls",
+        "rust-analyzer"
       },
     },
   },
@@ -56,17 +69,5 @@ return {
     'mrcjkb/rustaceanvim',
     version = '^4', -- Recommended
     lazy = false, -- This plugin is already lazy
-  },
-
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "lua-language-server",
-        "stylua",
-        "gopls",
-        "rust-analyzer"
-      },
-    },
   },
 }
