@@ -62,8 +62,10 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "lua-language-server", "stylua",
-        "gopls"
+        "lua-language-server",
+        "stylua",
+        "gopls",
+        "rust-analyzer"
       },
     },
   },
