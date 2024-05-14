@@ -7,7 +7,9 @@ require "nvchad.options"
 
 vim.g.nvim_tree_respect_buf_cwd = 1
 
--- vim.opt.autochdir = true
+vim.opt.autochdir = true
+
+require("nvim-tree.api").tree.toggle_gitignore_filter()
 
 local function open_nvim_tree(data)
 
@@ -28,14 +30,6 @@ end
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 vim.cmd([[ aunmenu PopUp.How-to\ disable\ mouse ]])
 vim.cmd([[ aunmenu PopUp.-1- ]])
-
-local _, nvimtree = pcall(require, "nvim-tree")
-
-nvimtree.setup({
-  git = {
-    ignore = false,
-  },
-})
 
 -- This is your opts table
 require("telescope").setup {

@@ -40,7 +40,7 @@ M.ui = {
       { "  Themes", "Spc t h", "Telescope themes" },
       { "  Mappings", "Spc c h", "NvCheatsheet" },
     },
-  }
+  },
 
 	-- hl_override = {
 	-- 	Comment = { italic = true },
