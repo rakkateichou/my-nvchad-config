@@ -9,8 +9,6 @@ vim.g.nvim_tree_respect_buf_cwd = 1
 
 vim.opt.autochdir = true
 
-require("nvim-tree.api").tree.toggle_gitignore_filter()
-
 local function open_nvim_tree(data)
 
   -- buffer is a directory
@@ -61,3 +59,6 @@ require("telescope").setup {
 -- To get ui-select loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require("telescope").load_extension("ui-select")
+
+vim.api.nvim_create_user_command('Q', 'quit', {})
+

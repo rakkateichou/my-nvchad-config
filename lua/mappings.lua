@@ -168,7 +168,7 @@ map("i", "jk", "<ESC>")
 map({ "n", "i" }, "<C-e>", ":lua vim.diagnostic.open_float()<cr>", { silent = true })
 map({ "n", "i" }, "<C-d>", ":GoDoc<cr>", { silent = true })
 
-map("n", "<leader>a", ":lua vim.lsp.buf.code_action()<CR>", { silent = true })
+map("n", "<leader>a", ":lua vim.lsp.buf.code_action()<CR>", { desc = "Code actions", silent = true })
 
 -- local bufnr = vim.api.nvim_get_current_buf()
 -- map(

@@ -1,26 +1,5 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "lua",
-        "vimdoc",
-
-        "go",
-        "python",
-
-        "c",
-        "rust",
-
-        "html",
-        "css",
-        "javascript",
-        "typescript",
-      },
-    },
-  },
-
-  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
@@ -56,6 +35,39 @@ return {
   },
 
   { "nvim-telescope/telescope-ui-select.nvim" },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "lua",
+        "vimdoc",
+
+        "go",
+        "python",
+
+        "c",
+        "rust",
+
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+      },
+    },
+  },
+
+  {
+    "nvim-tree/nvim-tree.lua",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    opts = function()
+      return require "configs.nvimtree"
+    end,
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "nvimtree")
+      require("nvim-tree").setup(opts)
+    end,
+  },
 
   {
     "ray-x/go.nvim",
