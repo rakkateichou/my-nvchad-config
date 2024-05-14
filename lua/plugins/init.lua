@@ -15,7 +15,7 @@ return {
         "html",
         "css",
         "javascript",
-        "typescript"
+        "typescript",
       },
     },
   },
@@ -27,7 +27,7 @@ return {
         "lua-language-server",
         "stylua",
         "gopls",
-        "rust-analyzer"
+        "rust-analyzer",
       },
     },
   },
@@ -46,13 +46,20 @@ return {
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
+    opts = {
+      setup = {
+        rust_analyzer = function()
+          return true
+        end,
+      },
+    },
   },
 
-  {'nvim-telescope/telescope-ui-select.nvim' },
+  { "nvim-telescope/telescope-ui-select.nvim" },
 
   {
     "ray-x/go.nvim",
-    dependencies = {  -- optional packages
+    dependencies = { -- optional packages
       "ray-x/guihua.lua",
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
@@ -60,14 +67,14 @@ return {
     config = function()
       require("go").setup()
     end,
-    event = {"CmdlineEnter"},
-    ft = {"go", 'gomod'},
-    build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+    event = { "CmdlineEnter" },
+    ft = { "go", "gomod" },
+    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
 
-  {
-    'mrcjkb/rustaceanvim',
-    version = '^4', -- Recommended
-    lazy = false, -- This plugin is already lazy
-  },
+  -- {
+  --   "mrcjkb/rustaceanvim",
+  --   version = "^4", -- Recommended
+  --   lazy = false, -- This plugin is already lazy
+  -- },
 }

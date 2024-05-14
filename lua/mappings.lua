@@ -1,7 +1,7 @@
 -- require "nvchad.mappings"
 
 local map = vim.keymap.set
-local ismac = vim.fn.has("macunix")
+local ismac = vim.fn.has "macunix"
 
 map("i", "<C-b>", "<ESC>^i", { desc = "Move Beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "Move End of line" })
@@ -22,20 +22,19 @@ map("i", "<C-s>", "<ESC><cmd>w<CR>i", { desc = "File Save" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "File Copy whole" })
 
 if vim.g.neovide then
-  vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
-  vim.keymap.set('v', '<D-c>', '"+y') -- Copy
-  vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
-  vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
-  vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
-  vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+  vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
+  vim.keymap.set("v", "<D-c>", '"+y') -- Copy
+  vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
+  vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
+  vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
+  vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
 
   -- Allow clipboard copy paste in neovim
-  vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+  vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
 end
-
 
 map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle Relative number" })
 map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "Toggle NvCheatsheet" })
@@ -160,14 +159,16 @@ map("n", "<leader>cc", function()
   end
 end, { desc = "Blankline Jump to current context" })
 
-if ismac then map("i", "ø", "<ESC>o", { desc = "New Line in Insert mode"} ) end
+if ismac then
+  map("i", "ø", "<ESC>o", { desc = "New Line in Insert mode" })
+end
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
-map({"n", "i"}, "<C-e>", ":lua vim.diagnostic.open_float()<cr>", { silent = true })
-map({"n", "i"}, "<C-d>", ":GoDoc<cr>", { silent = true })
+map({ "n", "i" }, "<C-e>", ":lua vim.diagnostic.open_float()<cr>", { silent = true })
+map({ "n", "i" }, "<C-d>", ":GoDoc<cr>", { silent = true })
 
-map({"i", "n"}, "<M-CR>", ":lua vim.lsp.buf.code_action()<CR>", { silent = true })
+map({ "i", "n" }, "<leader>a", ":lua vim.lsp.buf.code_action()<CR>", { silent = true })
 
 -- local bufnr = vim.api.nvim_get_current_buf()
 -- map(

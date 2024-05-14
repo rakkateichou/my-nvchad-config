@@ -5,9 +5,9 @@ require "nvchad.options"
 -- local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
 
-vim.opt.autochdir = true
-
 vim.g.nvim_tree_respect_buf_cwd = 1
+
+-- vim.opt.autochdir = true
 
 local function open_nvim_tree(data)
 
