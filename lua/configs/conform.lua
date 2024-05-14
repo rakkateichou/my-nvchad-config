@@ -3,7 +3,8 @@ local options = {
     lua = { "stylua" },
     -- css = { "prettier" },
     -- html = { "prettier" },
-    go = { "gofmt" }
+    go = { "gofmt" },
+    rust = { "rustfmt" }
   },
 
   format_on_save = {
