@@ -10,7 +10,6 @@ vim.g.nvim_tree_respect_buf_cwd = 1
 vim.opt.autochdir = true
 
 local function open_nvim_tree(data)
-
   -- buffer is a directory
   local directory = vim.fn.isdirectory(data.file) == 1
 
@@ -25,9 +24,24 @@ local function open_nvim_tree(data)
   require("nvim-tree.api").tree.open()
 end
 
+vim.o.confirm = true
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = vim.api.nvim_create_augroup("NvimTreeClose", { clear = true }),
+  callback = function()
+    local layout = vim.api.nvim_call_function("winlayout", {})
+    if
+      layout[1] == "leaf"
+      and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree"
+      and layout[3] == nil
+    then
+      vim.cmd "quit"
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
-vim.cmd([[ aunmenu PopUp.How-to\ disable\ mouse ]])
-vim.cmd([[ aunmenu PopUp.-1- ]])
+vim.cmd [[ aunmenu PopUp.How-to\ disable\ mouse ]]
+vim.cmd [[ aunmenu PopUp.-1- ]]
 
 -- This is your opts table
 require("telescope").setup {
@@ -35,7 +49,7 @@ require("telescope").setup {
     ["ui-select"] = {
       require("telescope.themes").get_dropdown {
         -- even more opts
-      }
+      },
 
       -- pseudo code / specification for writing custom displays, like the one
       -- for "codeactions"
@@ -50,15 +64,14 @@ require("telescope").setup {
       --      do the following
       --   codeactions = false,
       -- }
-    }
+    },
   },
   defaults = {
     prompt_prefix = "   ",
-  }
+  },
 }
 -- To get ui-select loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
-require("telescope").load_extension("ui-select")
+require("telescope").load_extension "ui-select"
 
-vim.api.nvim_create_user_command('Q', 'quit', {})
-
+vim.api.nvim_create_user_command("Q", "quit", {})
