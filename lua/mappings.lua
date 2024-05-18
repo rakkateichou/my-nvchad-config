@@ -108,11 +108,11 @@ local horizontal_key, vertical_key
 
 -- Check if the operating system is macOS and set keys accordingly
 if ismac then
-    horizontal_key = "˙"  -- Set the macOS specific key for horizontal split
-    vertical_key = "√"   -- Set the macOS specific key for vertical split
+  horizontal_key = "˙" -- Set the macOS specific key for horizontal split
+  vertical_key = "√" -- Set the macOS specific key for vertical split
 else
-    horizontal_key = "<A-h>"  -- Set the key for horizontal split for other OS
-    vertical_key = "<A-v>"    -- Set the key for vertical split for other OS
+  horizontal_key = "<A-h>" -- Set the key for horizontal split for other OS
+  vertical_key = "<A-v>" -- Set the key for vertical split for other OS
 end
 
 -- Define a new horizontal terminal with the specified key
@@ -147,6 +147,9 @@ map("t", "jk", function()
   local win = vim.api.nvim_get_current_win()
   vim.api.nvim_win_close(win, true)
 end, { desc = "Terminal Close term in terminal mode" })
+
+map("n", "<leader>ws", "<cmd>sp<CR>", { desc = "Split Window", silent = true })
+map("n", "<leader>wv", "<cmd>vsp<CR>", { desc = "Split Window Vertically", silent = true })
 
 -- whichkey
 map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "Whichkey all keymaps" })
