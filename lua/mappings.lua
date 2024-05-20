@@ -17,6 +17,11 @@ map("n", "<C-l>", "<C-w>l", { desc = "Switch Window right" })
 map("n", "<C-j>", "<C-w>j", { desc = "Switch Window down" })
 map("n", "<C-k>", "<C-w>k", { desc = "Switch Window up" })
 
+map("n", "<leader>wh", "<C-w>h", { desc = "Switch Window left" })
+map("n", "<leader>wl", "<C-w>l", { desc = "Switch Window right" })
+map("n", "<leader>wj", "<C-w>j", { desc = "Switch Window down" })
+map("n", "<leader>wk", "<C-w>k", { desc = "Switch Window up" })
+
 map("n", "<C-s>", "<cmd>w<CR>", { desc = "File Save" })
 map("i", "<C-s>", "<ESC><cmd>w<CR>i", { desc = "File Save" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "File Copy whole" })
@@ -129,11 +134,11 @@ end, { desc = "Terminal Toggleable vertical term" })
 
 map("n", "<leader>h", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm", size = 0.3 }
-end, { desc = "Terminal New horizontal term" })
+end, { desc = "Terminal Toggleable horizontal term" })
 
 map("n", "<leader>i", function()
   require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
-end, { desc = "Terminal Toggle Floating term" })
+end, { desc = "Terminal Toggleable floating term" })
 
 map("t", "<ESC>", function()
   local win = vim.api.nvim_get_current_win()
@@ -145,7 +150,7 @@ map("t", "jk", function()
   vim.api.nvim_win_close(win, true)
 end, { desc = "Terminal Close term in terminal mode" })
 
-map("n", "<leader>ws", "<cmd>sp<CR>", { desc = "Split Window", silent = true })
+map("n", "<leader>ws", "<cmd>sp<CR>", { desc = "Split Window Horizontally", silent = true })
 map("n", "<leader>wv", "<cmd>vsp<CR>", { desc = "Split Window Vertically", silent = true })
 
 -- whichkey
@@ -181,6 +186,9 @@ map({ "n", "i" }, "<C-e>", ":lua vim.diagnostic.open_float()<cr>", { silent = tr
 map({ "n", "i" }, "<C-d>", ":GoDoc<cr>", { silent = true })
 
 map("n", "<leader>a", ":lua vim.lsp.buf.code_action()<CR>", { desc = "Code actions", silent = true })
+map("n", "<leader>lh", function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggle inlay hints" })
 
 -- local bufnr = vim.api.nvim_get_current_buf()
 -- map(
