@@ -9,6 +9,14 @@ vim.g.nvim_tree_respect_buf_cwd = 1
 
 vim.opt.autochdir = true
 
+local iswin = vim.fn.has "win32"
+
+if iswin then
+  vim.opt.shell = "pwsh"
+  vim.opt.shellcmdflag = "-nologo -noprofile -ExecutionPolicy RemoteSigned -command"
+  vim.opt.shellxquote = ""
+end
+
 local function open_nvim_tree(data)
   -- buffer is a directory
   local directory = vim.fn.isdirectory(data.file) == 1

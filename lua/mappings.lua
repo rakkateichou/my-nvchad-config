@@ -104,26 +104,23 @@ map(
 -- terminal
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
 
-local horizontal_key, vertical_key
-
--- Check if the operating system is macOS and set keys accordingly
 if ismac then
-  horizontal_key = "˙" -- Set the macOS specific key for horizontal split
-  vertical_key = "√" -- Set the macOS specific key for vertical split
+  map("n", "˙", function()
+    require("nvchad.term").new { pos = "sp", size = 0.3 }
+  end, { desc = "Terminal New horizontal term" })
+
+  map("n", "√", function()
+    require("nvchad.term").new { pos = "vsp", size = 0.3 }
+  end, { desc = "Terminal New vertical window" })
 else
-  horizontal_key = "<A-h>" -- Set the key for horizontal split for other OS
-  vertical_key = "<A-v>" -- Set the key for vertical split for other OS
+  map("n", "<A-h>", function()
+    require("nvchad.term").new { pos = "sp", size = 0.3 }
+  end, { desc = "Terminal New horizontal term" })
+
+  map("n", "<A-v>", function()
+    require("nvchad.term").new { pos = "vsp", size = 0.3 }
+  end, { desc = "Terminal New vertical window" })
 end
-
--- Define a new horizontal terminal with the specified key
-map("n", horizontal_key, function()
-  require("nvchad.term").new { pos = "sp", size = 0.3 }
-end, { desc = "Terminal New horizontal term" })
-
--- Define a new vertical terminal with the specified key
-map("n", vertical_key, function()
-  require("nvchad.term").new { pos = "vsp", size = 0.3 }
-end, { desc = "Terminal New vertical window" })
 
 -- toggleable
 map("n", "<leader>v", function()
