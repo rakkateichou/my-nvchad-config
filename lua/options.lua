@@ -9,7 +9,7 @@ vim.g.nvim_tree_respect_buf_cwd = 1
 
 vim.opt.autochdir = true
 
-local iswin = vim.fn.has "win32"
+local iswin = vim.fn.has "win32" == 1
 
 if iswin then
   vim.opt.shell = "pwsh"
