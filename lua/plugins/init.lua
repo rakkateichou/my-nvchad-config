@@ -7,6 +7,7 @@ return {
         "stylua",
         "gopls",
         "rust-analyzer",
+        "typescript-language-server",
       },
     },
   },

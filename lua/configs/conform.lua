@@ -4,7 +4,8 @@ local options = {
     -- css = { "prettier" },
     -- html = { "prettier" },
     go = { "gofmt" },
-    rust = { "rustfmt" }
+    rust = { "rustfmt" },
+    javascript = { { "prettierd", "prettier" } },
   },
 
   format_on_save = {
