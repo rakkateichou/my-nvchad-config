@@ -82,4 +82,6 @@ require("telescope").setup {
 -- load_extension, somewhere after setup function:
 require("telescope").load_extension "ui-select"
 
+require("colorizer").setup()
+
 vim.api.nvim_create_user_command("Q", "quit", {})
