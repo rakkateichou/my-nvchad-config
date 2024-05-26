@@ -84,8 +84,25 @@ map(
 )
 
 -- nvimtree
+local nvim_tree_view = require "nvim-tree.view"
 map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Nvimtree Toggle window" })
-map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "Nvimtree Focus window" })
+map("n", "<leader>e", function()
+  if nvim_tree_view.is_visible() then
+    -- If NvimTree is focused, focus the window to the right
+    local current_win = vim.api.nvim_get_current_win()
+    if nvim_tree_view.get_winnr() == current_win then
+      vim.cmd "wincmd l"
+    else
+      -- If NvimTree is not focused, focus it
+      nvim_tree_view.focus()
+    end
+  else
+    -- If NvimTree is not visible, open and focus it
+    vim.cmd "NvimTreeFocus"
+  end
+end, { desc = "Nvimtree Focus window" })
+
+map("n", "<leader>cd", "<cmd>:cd %:h<CR>", { desc = "Cd to current file location", silent = true })
 
 -- telescope
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Telescope Live grep" })
