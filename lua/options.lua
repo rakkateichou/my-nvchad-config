@@ -84,7 +84,7 @@ require("telescope").load_extension "ui-select"
 
 require("colorizer").setup()
 
-require("luasnip").filetype_extend("javascript", { "javascriptreact" })
-require("luasnip").filetype_extend("javascript", { "html" })
+local luasnip = require "luasnip"
+luasnip.filetype_set("javascript", { "javascriptreact", "html" })
 
 vim.api.nvim_create_user_command("Q", "quit", {})
