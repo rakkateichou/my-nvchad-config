@@ -9,6 +9,7 @@ local servers = {
   "cssls",
   "tsserver",
   "gopls",
+  "pylsp",
 }
 
 -- vim.g.rustaceanvim = {

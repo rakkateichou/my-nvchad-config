@@ -8,6 +8,7 @@ return {
         "gopls",
         "rust-analyzer",
         "typescript-language-server",
+        "python-lsp-server",
       },
     },
   },
