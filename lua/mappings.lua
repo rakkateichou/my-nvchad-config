@@ -154,7 +154,16 @@ map("n", "<leader>h", function()
 end, { desc = "Terminal Toggleable horizontal term" })
 
 map("n", "<leader>i", function()
-  require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
+  require("nvchad.term").toggle {
+    pos = "float",
+    id = "floatTerm",
+    float_opts = {
+      width = 0.8,
+      height = 0.8,
+      row = 0.05,
+      col = 0.1,
+    },
+  }
 end, { desc = "Terminal Toggleable floating term" })
 
 map("t", "<ESC>", function()
