@@ -58,8 +58,6 @@ return {
     },
   },
 
-  { "nvim-telescope/telescope-ui-select.nvim" },
-
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -81,6 +79,9 @@ return {
         "css",
         "javascript",
         "typescript",
+
+        "markdown",
+        "markdown_inline",
       },
     },
   },
@@ -95,6 +96,25 @@ return {
       dofile(vim.g.base46_cache .. "nvimtree")
       require("nvim-tree").setup(opts)
     end,
+  },
+
+  {
+    "nvimdev/lspsaga.nvim",
+    config = function()
+      require("lspsaga").setup {
+        symbol_in_winbar = {
+          enable = false,
+        },
+        lightbulb = {
+          enable = false,
+        },
+      }
+    end,
+    event = "LspAttach",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter", -- optional
+      "nvim-tree/nvim-web-devicons", -- optional
+    },
   },
 
   {

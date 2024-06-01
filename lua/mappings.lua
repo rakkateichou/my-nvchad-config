@@ -17,11 +17,6 @@ map("n", "<C-l>", "<C-w>l", { desc = "Switch Window right" })
 map("n", "<C-j>", "<C-w>j", { desc = "Switch Window down" })
 map("n", "<C-k>", "<C-w>k", { desc = "Switch Window up" })
 
-map("n", "<leader>wh", "<C-w>h", { desc = "Switch Window left" })
-map("n", "<leader>wl", "<C-w>l", { desc = "Switch Window right" })
-map("n", "<leader>wj", "<C-w>j", { desc = "Switch Window down" })
-map("n", "<leader>wk", "<C-w>k", { desc = "Switch Window up" })
-
 map("n", "<C-s>", "<cmd>w<CR>", { desc = "File Save" })
 map("i", "<C-s>", "<ESC><cmd>w<CR>i", { desc = "File Save" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "File Copy whole" })
@@ -209,9 +204,9 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
 map({ "n", "i" }, "<C-e>", ":lua vim.diagnostic.open_float()<cr>", { silent = true })
-map({ "n", "i" }, "<C-d>", ":GoDoc<cr>", { silent = true })
+map({ "n", "i" }, "<C-d>", ":Lspsaga hover_doc<cr>", { silent = true })
 
-map("n", "<leader>a", ":lua vim.lsp.buf.code_action()<CR>", { desc = "Code actions", silent = true })
+map("n", "<leader>a", ":Lspsaga code_action<cr>", { desc = "Code actions", silent = true })
 map("n", "<leader>lh", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Toggle inlay hints" })
