@@ -1,7 +1,7 @@
 -- require "nvchad.mappings"
 
 local map = vim.keymap.set
-local ismac = vim.fn.has "macunix"
+local ismac = vim.fn.has "macunix" == 1
 
 map("i", "<C-b>", "<ESC>^i", { desc = "Move Beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "Move End of line" })
