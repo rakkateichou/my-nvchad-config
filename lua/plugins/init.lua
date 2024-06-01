@@ -118,6 +118,17 @@ return {
   },
 
   {
+    "ray-x/lsp_signature.nvim",
+    event = "LspAttach",
+    opts = {},
+    config = function(_, opts)
+      require("lsp_signature").setup {
+        hint_enable = false,
+      }
+    end,
+  },
+
+  {
     "ray-x/go.nvim",
     dependencies = { -- optional packages
       "ray-x/guihua.lua",
