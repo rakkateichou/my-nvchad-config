@@ -108,6 +108,11 @@ return {
         lightbulb = {
           enable = false,
         },
+        code_action = {
+          keys = {
+            quit = "<esc>",
+          },
+        },
       }
     end,
     event = "LspAttach",
