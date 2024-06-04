@@ -195,10 +195,16 @@ end
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
-map({ "n", "i" }, "<C-e>", ":lua vim.diagnostic.open_float()<cr>", { silent = true })
-map({ "n", "i" }, "<C-d>", ":Lspsaga hover_doc<cr>", { silent = true })
+local fzf = require "fzf-lua"
 
-map("n", "<leader>a", ":Lspsaga code_action<cr>", { desc = "Code actions", silent = true })
+map({ "n", "i" }, "<C-e>", ":lua vim.diagnostic.open_float()<cr>", { silent = true })
+
+map({ "n", "i" }, "<C-d>", ":GoDoc<cr>", { silent = true })
+
+map("n", "<leader>a", function()
+  fzf.lsp_code_actions()
+end, { desc = "Code actions", silent = true })
+
 map("n", "<leader>lh", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Toggle inlay hints" })

@@ -98,28 +98,42 @@ return {
     end,
   },
 
+  -- {
+  --   "nvimdev/lspsaga.nvim", -- has a bug with tabufline
+  --   config = function()
+  --     require("lspsaga").setup {
+  --       symbol_in_winbar = {
+  --         enable = false,
+  --       },
+  --       lightbulb = {
+  --         enable = false,
+  --       },
+  --       code_action = {
+  --         keys = {
+  --           quit = "<esc>",
+  --         },
+  --       },
+  --     }
+  --   end,
+  --   event = "LspAttach",
+  --   dependencies = {
+  --     "nvim-treesitter/nvim-treesitter", -- optional
+  --     "nvim-tree/nvim-web-devicons", -- optional
+  --   },
+  -- },
+
+  -- replaced with fzf-lua
+
+  { "junegunn/fzf", build = "./install --bin" },
+
   {
-    "nvimdev/lspsaga.nvim",
+    "ibhagwan/fzf-lua", -- replace telescope with this it the future?
+    -- optional for icon support
+    dependencies = { "nvim-tree/nvim-web-devicons", "junegunn/fzf" },
     config = function()
-      require("lspsaga").setup {
-        symbol_in_winbar = {
-          enable = false,
-        },
-        lightbulb = {
-          enable = false,
-        },
-        code_action = {
-          keys = {
-            quit = "<esc>",
-          },
-        },
-      }
+      -- calling `setup` is optional for customization
+      -- require("fzf-lua").setup {}
     end,
-    event = "LspAttach",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter", -- optional
-      "nvim-tree/nvim-web-devicons", -- optional
-    },
   },
 
   {
